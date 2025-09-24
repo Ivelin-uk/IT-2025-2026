@@ -1,0 +1,309 @@
+/* Основни стилове за body */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    transition: all 0.3s ease;
+    min-height: 100vh;
+}
+
+/* Контейнер за целия калкулатор */
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* Контролни бутони за темата */
+.theme-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.theme-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Основен калкулатор */
+.calculator {
+    background: var(--calc-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    width: 350px;
+    border: var(--border);
+}
+
+/* Дисплей */
+#display {
+    width: 100%;
+    height: 60px;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: right;
+    padding: 0.5rem;
+    border: var(--input-border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+/* Превключвател за режим */
+.mode-toggle {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#modeToggle {
+    padding: 8px 20px;
+    background: var(--mode-btn-bg);
+    color: var(--mode-btn-text);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Основни бутони */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Научни бутони */
+.scientific-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+/* Общи стилове за бутони */
+button {
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+button:hover {
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Специални бутони */
+.clear, .clear-entry {
+    background: var(--clear-btn-bg);
+    color: var(--clear-btn-text);
+}
+
+.equals {
+    background: var(--equals-btn-bg);
+    color: var(--equals-btn-text);
+    font-weight: bold;
+}
+
+/* История */
+.history-panel {
+    background: var(--history-bg);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    width: 300px;
+    max-height: 500px;
+    border: var(--border);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: var(--history-border);
+    padding-bottom: 0.5rem;
+}
+
+.history-header h3 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.clear-history {
+    background: var(--clear-btn-bg);
+    color: var(--clear-btn-text);
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.history-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 10px;
+    margin-bottom: 8px;
+    background: var(--history-item-bg);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.history-item:hover {
+    background: var(--history-item-hover);
+    transform: translateX(5px);
+}
+
+.history-calculation {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+}
+
+.history-result {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* Светла тема (по подразбиране) */
+body.light {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --calc-bg: #ffffff;
+    --history-bg: #ffffff;
+    --input-bg: #f8f9fa;
+    --btn-bg: #e9ecef;
+    --btn-hover: #dee2e6;
+    --btn-text: #333333;
+    --text-color: #333333;
+    --text-secondary: #666666;
+    --clear-btn-bg: #dc3545;
+    --clear-btn-text: #ffffff;
+    --equals-btn-bg: #007bff;
+    --equals-btn-text: #ffffff;
+    --mode-btn-bg: #6c757d;
+    --mode-btn-text: #ffffff;
+    --shadow: 0 8px 32px rgba(0,0,0,0.1);
+    --border: 1px solid #e9ecef;
+    --input-border: 2px solid #dee2e6;
+    --history-border: 2px solid #e9ecef;
+    --history-item-bg: #f8f9fa;
+    --history-item-hover: #e9ecef;
+    --accent-color: #007bff;
+}
+
+/* Тъмна тема */
+body.dark {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    --calc-bg: #2d3748;
+    --history-bg: #2d3748;
+    --input-bg: #4a5568;
+    --btn-bg: #4a5568;
+    --btn-hover: #718096;
+    --btn-text: #ffffff;
+    --text-color: #ffffff;
+    --text-secondary: #cbd5e0;
+    --clear-btn-bg: #e53e3e;
+    --clear-btn-text: #ffffff;
+    --equals-btn-bg: #3182ce;
+    --equals-btn-text: #ffffff;
+    --mode-btn-bg: #718096;
+    --mode-btn-text: #ffffff;
+    --shadow: 0 8px 32px rgba(0,0,0,0.3);
+    --border: 1px solid #4a5568;
+    --input-border: 2px solid #718096;
+    --history-border: 2px solid #4a5568;
+    --history-item-bg: #4a5568;
+    --history-item-hover: #718096;
+    --accent-color: #3182ce;
+}
+
+/* Синя тема */
+body.blue {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --calc-bg: #ebf8ff;
+    --history-bg: #ebf8ff;
+    --input-bg: #bee3f8;
+    --btn-bg: #90cdf4;
+    --btn-hover: #63b3ed;
+    --btn-text: #1a202c;
+    --text-color: #1a202c;
+    --text-secondary: #2d3748;
+    --clear-btn-bg: #e53e3e;
+    --clear-btn-text: #ffffff;
+    --equals-btn-bg: #2b6cb0;
+    --equals-btn-text: #ffffff;
+    --mode-btn-bg: #4299e1;
+    --mode-btn-text: #ffffff;
+    --shadow: 0 8px 32px rgba(102,126,234,0.3);
+    --border: 2px solid #90cdf4;
+    --input-border: 2px solid #4299e1;
+    --history-border: 2px solid #90cdf4;
+    --history-item-bg: #bee3f8;
+    --history-item-hover: #90cdf4;
+    --accent-color: #2b6cb0;
+}
+
+/* Зелена тема */
+body.green {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --calc-bg: #f0fff4;
+    --history-bg: #f0fff4;
+    --input-bg: #c6f6d5;
+    --btn-bg: #9ae6b4;
+    --btn-hover: #68d391;
+    --btn-text: #1a202c;
+    --text-color: #1a202c;
+    --text-secondary: #2d3748;
+    --clear-btn-bg: #e53e3e;
+    --clear-btn-text: #ffffff;
+    --equals-btn-bg: #38a169;
+    --equals-btn-text: #ffffff;
+    --mode-btn-bg: #48bb78;
+    --mode-btn-text: #ffffff;
+    --shadow: 0 8px 32px rgba(17,153,142,0.3);
+    --border: 2px solid #9ae6b4;
+    --input-border: 2px solid #48bb78;
+    --history-border: 2px solid #9ae6b4;
+    --history-item-bg: #c6f6d5;
+    --history-item-hover: #9ae6b4;
+    --accent-color: #38a169;
+}
+
+/* Responsive дизайн */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .calculator, .history-panel {
+        width: 90%;
+        max-width: 400px;
+    }
+}

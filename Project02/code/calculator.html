@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Научен Уеб Калкулатор</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Бутони за управление на темата -->
+        <div class="theme-controls">
+            <button onclick="switchTheme('light')" class="theme-btn">Светла</button>
+            <button onclick="switchTheme('dark')" class="theme-btn">Тъмна</button>
+            <button onclick="switchTheme('blue')" class="theme-btn">Синя</button>
+            <button onclick="switchTheme('green')" class="theme-btn">Зелена</button>
+        </div>
+
+        <div class="calculator">
+            <input type="text" id="display" disabled>
+            
+            <!-- Преключвател за научен режим -->
+            <div class="mode-toggle">
+                <button onclick="toggleScientificMode()" id="modeToggle">Научен режим</button>
+            </div>
+
+            <!-- Основни бутони -->
+            <div class="buttons" id="basicButtons">
+                <button onclick="clearDisplay()" class="clear">C</button>
+                <button onclick="clearEntry()" class="clear-entry">CE</button>
+                <button onclick="press('(')">(</button>
+                <button onclick="press(')')">)</button>
+                
+                <button onclick="press('7')">7</button>
+                <button onclick="press('8')">8</button>
+                <button onclick="press('9')">9</button>
+                <button onclick="press('/')">÷</button>
+                
+                <button onclick="press('4')">4</button>
+                <button onclick="press('5')">5</button>
+                <button onclick="press('6')">6</button>
+                <button onclick="press('*')">×</button>
+                
+                <button onclick="press('1')">1</button>
+                <button onclick="press('2')">2</button>
+                <button onclick="press('3')">3</button>
+                <button onclick="press('-')">−</button>
+                
+                <button onclick="press('0')">0</button>
+                <button onclick="press('.')">.</button>
+                <button onclick="calculate()" class="equals">=</button>
+                <button onclick="press('+')">+</button>
+            </div>
+
+            <!-- Научни бутони -->
+            <div class="scientific-buttons" id="scientificButtons" style="display: none;">
+                <button onclick="scientificFunction('sin')">sin</button>
+                <button onclick="scientificFunction('cos')">cos</button>
+                <button onclick="scientificFunction('tan')">tan</button>
+                <button onclick="scientificFunction('log')">log</button>
+                
+                <button onclick="scientificFunction('ln')">ln</button>
+                <button onclick="scientificFunction('sqrt')">√</button>
+                <button onclick="scientificFunction('pow2')">x²</button>
+                <button onclick="scientificFunction('pow3')">x³</button>
+                
+                <button onclick="press('Math.PI')">π</button>
+                <button onclick="press('Math.E')">e</button>
+                <button onclick="scientificFunction('factorial')">n!</button>
+                <button onclick="scientificFunction('powx')">x^y</button>
+            </div>
+        </div>
+
+        <!-- История -->
+        <div class="history-panel" id="historyPanel">
+            <div class="history-header">
+                <h3>История</h3>
+                <button onclick="clearHistory()" class="clear-history">Изчисти</button>
+            </div>
+            <div class="history-list" id="historyList"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
