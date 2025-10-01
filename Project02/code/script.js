@@ -187,6 +187,10 @@ function switchTheme(theme) {
 // 05-JavaScript-Functions - Запазване на тема в localStorage
 function saveTheme() {
     localStorage.setItem('calculatorTheme', currentTheme);
+    console.log('=== LocalStorage съдържание след запазване на тема ===');
+    console.log('calculatorTheme:', localStorage.getItem('calculatorTheme'));
+    console.log('calculatorHistory:', localStorage.getItem('calculatorHistory'));
+    console.log('=== Край на LocalStorage съдържание ===');
 }
 
 // 05-JavaScript-Functions - Зареждане на тема от localStorage
@@ -220,6 +224,10 @@ function addToHistory(calculation, result) {
 // 05-JavaScript-Functions - Запазване на история в localStorage
 function saveHistory() {
     localStorage.setItem('calculatorHistory', JSON.stringify(history));
+    console.log('=== LocalStorage съдържание след запазване на история ===');
+    console.log('calculatorTheme:', localStorage.getItem('calculatorTheme'));
+    console.log('calculatorHistory:', localStorage.getItem('calculatorHistory'));
+    console.log('=== Край на LocalStorage съдържание ===');
 }
 
 // 05-JavaScript-Functions - Зареждане на история от localStorage
