@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.backgroundColor = localStorage.getItem('calculatorTheme') === 'dark' ? '#333' : '#fff';
+    });
+
+    localStorage.clear();
+    // Покажи всички localStorage данни
+    //console.table(localStorage);
+
+    localStorage.setItem('calculatorTheme', 'dark');
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        console.log(key + ':', value);
+    }
+    
+</script>

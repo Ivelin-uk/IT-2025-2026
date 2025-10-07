@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p>Example 1</p>
+        <p>Example 2</p>
+        <p>Example 3</p>
+        <p>Example 4</p>
+    </div>
+
+    <div> 
+        <p>Example 5</p>
+        <p>Example 6</p>
+        <p>Example 7</p>
+        <p>Example 8</p>   
+    </div>
+    <img>
+    <button>Click Me</button>
+</body>
+</html>
+
+<script>
+    /*
+        1.JavaScript can change all the HTML elements in the page
+        2.JavaScript can change all the HTML attributes in the page
+        3.JavaScript can change all the CSS styles in the page
+        4.JavaScript can remove existing HTML elements and attributes
+        5.JavaScript can add new HTML elements and attributes
+        6.JavaScript can react to all existing HTML events in the page
+        7.JavaScript can create new HTML events in the page
+    */
+
+    //DOM
+    //console.log('Hello, World!');
+    //console.log(document.body.children[1].children[0].textContent);
+    //let collection = document.body.children;
+    //console.log(collection[1].children[0].textContent);
+    //console.log(document.body.children[1].children[0].children[2].textContent);
+
+    //alert('work')
+    //1.JavaScript can change all the HTML elements in the page
+    document.body.children[0].children[0].textContent = 'Changed Example 1';
+
+    // 2.JavaScript can change all the HTML attributes in the page
+    document.body.children[2].src = "https://www.w3schools.com/js/pic_bulbon.gif";
+
+    // 3.JavaScript can change all the CSS styles in the page
+    document.body.children[0].children[0].style.color = "red";
+
+    document.body.children[1].children[3].style.color = "red";
+    document.body.children[1].children[3].style.backgroundColor = "lightgray";
+    document.body.children[1].children[3].style.fontSize = "30px";
+
+    // 4.JavaScript can remove existing HTML elements and attributes
+    //document.body.children[1].children[2].remove();
+
+    //5.JavaScript can add new HTML elements and attributes
+    let newParagraph = document.createElement("p");
+    newParagraph.textContent = "Example 9";
+    newParagraph.style.color = "green";
+    newParagraph.style.fontSize = "40px";
+
+    document.body.children[1].appendChild(newParagraph);
+
+    //6.JavaScript can react to all existing HTML events in the page
+    // let button = document.body.children[3];
+    // button.onclick = function() {
+    //    document.body.style.backgroundColor = "lightblue";
+    // };
+</script>

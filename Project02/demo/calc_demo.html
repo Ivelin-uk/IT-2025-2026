@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" disabled>
+    <br>
+    <button onclick="calc(1)">1</button>
+    <button onclick="calc(2)">2</button>
+    <button onclick="calc(3)">3</button>
+    <br>
+    <button onclick="calc(4)">4</button>
+    <button onclick="calc(5)">5</button>
+    <button onclick="calc(6)">6</button>
+    <br>
+    <button onclick="calc(7)">7</button>
+    <button onclick="calc(8)">8</button>
+    <button onclick="calc(9)">9</button>
+    <br>
+    <button onclick="calc('-')">-</button>
+    <button onclick="calc('+')">+</button>
+    <button onclick="calc('*')">*</button>
+    <br>
+    <button onclick="calculate()">calculate</button>
+    <button onclick="clearInput()">clear</button>
+</body>
+</html>
+
+<script>
+
+    function calculate() {
+        let input = document.body.children[0];
+        input.value = eval(input.value);
+    }
+    
+    function calc(value) {  
+        let input = document.body.children[0];
+        input.value += value;
+    }
+
+    function clearInput() {
+        let input = document.body.children[0];
+        input.value = "";
+    }
+</script>
+
+
