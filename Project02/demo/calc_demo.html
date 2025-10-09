@@ -6,8 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text" disabled>
+    <button onclick="changeColor('#786a46')">color1</button>
+    <button onclick="changeColor('#c49725')">color2</button>
+    <button onclick="changeColor('#c42551')">color3</button>
+    <button onclick="changeColor('#c47777')">color4</button>
     <br>
+
+    <input type="text" disabled>
+
+    <br>
+    <button onclick="calc(0)">0</button>
     <button onclick="calc(1)">1</button>
     <button onclick="calc(2)">2</button>
     <button onclick="calc(3)">3</button>
@@ -23,28 +31,56 @@
     <button onclick="calc('-')">-</button>
     <button onclick="calc('+')">+</button>
     <button onclick="calc('*')">*</button>
+    <button onclick="calc('/')">/</button>
     <br>
     <button onclick="calculate()">calculate</button>
     <button onclick="clearInput()">clear</button>
+    <button onclick="ce()">ce</button>
 </body>
 </html>
 
 <script>
+    // console.log(document);
+    // console.log('Hello, World!');
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.backgroundColor = localStorage.getItem('calculatorTheme') || '#fff';
+    });
+    
+    function ce() {
+        let input = document.body.children[5];
+        input.value = input.value.slice(0, -1);
+    }
 
     function calculate() {
-        let input = document.body.children[0];
+        let input = document.body.children[5];
+        console.log(input.value);
         input.value = eval(input.value);
     }
     
     function calc(value) {  
-        let input = document.body.children[0];
+        //console.log(document.body.children)
+        let input = document.body.children[5];
         input.value += value;
     }
 
     function clearInput() {
-        let input = document.body.children[0];
+        let input = document.body.children[5];
         input.value = "";
     }
+
+    function changeColor(color) {
+        document.body.style.backgroundColor = color;
+        localStorage.setItem('calculatorTheme', color);
+    }
+
+    //localStorage.clear();
+    localStorage.setItem('name', 'Ivan');
+    console.log(localStorage)
+
+    // //localStorage.setItem('name', 'Pesho');
+
+    console.log(eval("100*2+2"));
 </script>
 
 

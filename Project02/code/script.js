@@ -302,3 +302,5 @@ document.addEventListener('keydown', function(event) {
         clearEntry();
     }
 });
+
+console.log(localStorage);

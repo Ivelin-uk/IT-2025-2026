@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <p>Example 1</p>
+   <p>Example 2</p>
+   <p>Example 3</p>
+   <img>
+</body>
+</html>
+
+<script>
+    // for(;;){    
+    //     alert('work')
+    // }
+
+    // DOM -> Document Object Model 
+    // DOM служи за представяне на структурата на HTML документа като дърво от обекти,
+    // което позволява достъп, промяна и управление на съдържанието и елементите на страницата чрез JavaScript.
+    /*
+        1.JavaScript can change all the HTML elements in the page
+        2.JavaScript can change all the HTML attributes in the page
+        3.JavaScript can change all the CSS styles in the page
+        4.JavaScript can remove existing HTML elements and attributes
+        5.JavaScript can add new HTML elements and attributes
+        6.JavaScript can react to all existing HTML events in the page
+        7.JavaScript can create new HTML events in the page
+    */
+
+   //1.JavaScript can change all the HTML elements in the page
+   console.log(document)
+   document.body.style.backgroundColor = "lightgray";
+   let pesho = document.body.children[0];
+   pesho.textContent = "Hello, I'm Pesho";
+
+   //2.JavaScript can change all the HTML attributes in the page
+   let img = document.body.children[3];
+   img.setAttribute("title", "This is a paragraph");
+   img.setAttribute("src", "https://www.w3schools.com/js/pic_bulboff.gif");
+   img.src = "https://www.w3schools.com/js/pic_bulboff.gif";
+
+   // 3.JavaScript can change all the CSS styles in the page
+   let p2 = document.body.children[1];
+   p2.style.color = "red";
+   p2.style.backgroundColor = "yellow";
+   p2.style.fontSize = "30px";
+
+   //4.JavaScript can remove existing HTML elements and attributes
+   let p3 = document.body.children[2];
+   p3.remove();
+
+   //5.JavaScript can add new HTML elements and attributes
+   let newParagraph = document.createElement("p");
+   newParagraph.textContent = "This is a new paragraph";
+   document.body.appendChild(newParagraph);
+
+    //6.JavaScript can react to all existing HTML events in the page
+    // img.onclick = function() {
+    //     if (img.src.includes("bulboff")) {
+    //         img.src = "https://www.w3schools.com/js/pic_bulbon.gif";
+    //     } else {
+    //         img.src = "https://www.w3schools.com/js/pic_bulboff.gif";
+    //     }
+    // };
+    // let p1 = document.body.children[0];
+    // p1.onmouseover = function() {
+    //     p1.style.color = "blue";
+    //     p1.style.backgroundColor = "lightgray";
+    //     p1.style.fontSize = "50px";
+    // }
+
+    // p1.onmouseout = function() {
+    //     p1.style.color = "black";
+    //     p1.style.backgroundColor = "white";
+    //     p1.style.fontSize = "20px";
+    // }
+
+
+
+
+
+</script>
