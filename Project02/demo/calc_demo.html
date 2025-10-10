@@ -44,7 +44,7 @@
     // console.log('Hello, World!');
 
     document.addEventListener('DOMContentLoaded', function() {
-        document.body.style.backgroundColor = localStorage.getItem('calculatorTheme') || '#fff';
+        document.body.style.backgroundColor = localStorage.getItem('color') || '#fff';
     });
     
     function ce() {
@@ -71,16 +71,25 @@
 
     function changeColor(color) {
         document.body.style.backgroundColor = color;
-        localStorage.setItem('calculatorTheme', color);
+        localStorage.setItem('color', color);
     }
 
+    // //localStorage.clear();
+    // localStorage.setItem('name', 'Ivan');
+    //console.log(localStorage)
+
+    // // //localStorage.setItem('name', 'Pesho');
+
+    // console.log(eval("100*2+2"));
+
     //localStorage.clear();
-    localStorage.setItem('name', 'Ivan');
+
+    //localStorage.setItem('name','Pesho')
+
+    //localStorage.clear();
     console.log(localStorage)
+    //localStorage.setItem('name', 'Pesho');
 
-    // //localStorage.setItem('name', 'Pesho');
-
-    console.log(eval("100*2+2"));
 </script>
 
 

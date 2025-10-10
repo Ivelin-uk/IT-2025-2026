@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Example Demo</h1>
+    <div>
+        <div>
+            <p>Пример 1</p>
+            <p>Пример 2</p> <!-- -->
+            <p>Пример 3</p>
+        </div>
+        <div>
+            <p>Пример 4</p>
+            <p>Пример 5</p> <!-- -->
+            <p>Пример 6</p>
+        </div>
+    </div>
+    <img>
+    <button>Click Me</button>
+</body>
+</html>
+
+<script>
+    // DOM -> Document Object Model 
+    // DOM служи за представяне на структурата на HTML документа като дърво от обекти,
+    // което позволява достъп, промяна и управление на съдържанието и елементите на страницата чрез JavaScript.
+    /*
+        1.JavaScript can change all the HTML elements in the page
+        2.JavaScript can change all the HTML attributes in the page
+        3.JavaScript can change all the CSS styles in the page
+        4.JavaScript can remove existing HTML elements and attributes
+        5.JavaScript can add new HTML elements and attributes
+        6.JavaScript can react to all existing HTML events in the page
+        7.JavaScript can create new HTML events in the page
+    */
+
+    // for(;;){
+    //     alert('work')
+    // }
+
+    // 1.JavaScript can change all the HTML elements in the page
+    //console.log(document.body.children[0].textContent = 'WORK')
+
+    console.log(document)
+
+    let elements = document.body.children;
+    let h1 = elements[0];
+    h1.textContent = 'WORK';
+
+    document.body.children[1].children[1].children[1].textContent = 'JS';
+
+    //2.JavaScript can change all the HTML attributes in the page
+    let img = document.body.children[2];
+    img.src = "https://www.w3schools.com/js/pic_bulbon.gif";
+    img.alt = "Light On";
+
+    // 3.JavaScript can change all the CSS styles in the page
+    //let element = document.body.children[0];
+    //element.style.color = 'red';
+    let element = document.body.children[0];
+    element.style.color = 'red';
+    element.style.backgroundColor = 'yellow';
+
+    //4.JavaScript can remove existing HTML elements and attributes
+    //img.remove();
+
+    // 5.JavaScript can add new HTML elements and attributes
+    let p = document.createElement('p');
+    p.textContent = 'New Element';
+    p.style.color = 'red';
+
+    document.body.children[1].children[1].appendChild(p);
+
+    //6.JavaScript can react to all existing HTML events in the page
+    let button = document.body.children[3];
+    button.onclick = function() {
+        document.body.style.backgroundColor = "red";
+    }
+
+</script>
+
