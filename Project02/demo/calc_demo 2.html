@@ -43,44 +43,49 @@
     // console.log(document);
     // console.log('Hello, World!');
 
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     document.body.style.backgroundColor = localStorage.getItem('calculatorTheme') || '#fff';
-    // });
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.backgroundColor = localStorage.getItem('color') || '#fff';
+    });
     
-    // function ce() {
-    //     let input = document.body.children[5];
-    //     input.value = input.value.slice(0, -1);
-    // }
+    function ce() {
+        let input = document.body.children[5];
+        input.value = input.value.slice(0, -1);
+    }
 
-    // function calculate() {
-    //     let input = document.body.children[5];
-    //     console.log(input.value);
-    //     input.value = eval(input.value);
-    // }
+    function calculate() {
+        let input = document.body.children[5];
+        console.log(input.value);
+        input.value = eval(input.value);
+    }
     
-    // function calc(value) {  
-    //     //console.log(document.body.children)
-    //     let input = document.body.children[5];
-    //     input.value += value;
-    // }
+    function calc(value) {  
+        //console.log(document.body.children)
+        let input = document.body.children[5];
+        input.value += value;
+    }
 
-    // function clearInput() {
-    //     let input = document.body.children[5];
-    //     input.value = "";
-    // }
+    function clearInput() {
+        let input = document.body.children[5];
+        input.value = "";
+    }
 
-    // function changeColor(color) {
-    //     document.body.style.backgroundColor = color;
-    //     localStorage.setItem('calculatorTheme', color);
-    // }
+    function changeColor(color) {
+        document.body.style.backgroundColor = color;
+        localStorage.setItem('color', color);
+    }
 
-    // //localStorage.clear();
+    //localStorage.clear();
     // localStorage.setItem('name', 'Ivan');
-    // console.log(localStorage)
+    //console.log(localStorage)
 
     // // //localStorage.setItem('name', 'Pesho');
 
     // console.log(eval("100*2+2"));
+
+    //console.log(document)
+    //localStorage.clear()
+    //localStorage.setItem('name','Ivan')
+    console.log(localStorage)
 </script>
 
 

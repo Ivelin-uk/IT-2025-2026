@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UKTC Students Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #5a6fd8;
+        }
+
+        button.danger {
+            background: #e17055;
+        }
+
+        button.danger:hover {
+            background: #d63031;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .student-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.3s;
+        }
+
+        .student-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .student-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .student-info {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .student-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 UKTC Students Management</h1>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('students')">Студенти</button>
+            <button class="tab" onclick="showTab('add')">Добави студент</button>
+            <button class="tab" onclick="showTab('stats')">Статистики</button>
+        </div>
+
+        <div id="message" class="message"></div>
+
+        <!-- Студенти таб -->
+        <div id="students-tab" class="tab-content active">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Търсене по име, имейл или курс..." 
+                       onkeyup="searchStudents()" style="width: 300px; display: inline-block;">
+                <button onclick="loadStudents()" style="margin-left: 10px;">Обнови</button>
+            </div>
+            <div id="studentsGrid" class="students-grid"></div>
+        </div>
+
+        <!-- Добави студент таб -->
+        <div id="add-tab" class="tab-content">
+            <form id="studentForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Име *</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Фамилия *</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Имейл *</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Възраст</label>
+                        <input type="number" id="age" min="16" max="65">
+                    </div>
+                    <div class="form-group">
+                        <label for="course">Курс</label>
+                        <select id="course">
+                            <option value="IT">IT</option>
+                            <option value="Дизайн">Дизайн</option>
+                            <option value="Маркетинг">Маркетинг</option>
+                            <option value="Бизнес">Бизнес</option>
+                            <option value="Други">Други</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="year">Година</label>
+                        <select id="year">
+                            <option value="1">1 курс</option>
+                            <option value="2">2 курс</option>
+                            <option value="3">3 курс</option>
+                            <option value="4">4 курс</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="gpa">Успех (от 2.00 до 6.00)</label>
+                        <input type="number" id="gpa" min="2" max="6" step="0.1">
+                    </div>
+                </div>
+                
+                <button type="submit">Добави студент</button>
+                <button type="button" onclick="resetForm()">Изчисти</button>
+            </form>
+        </div>
+
+        <!-- Статистики таб -->
+        <div id="stats-tab" class="tab-content">
+            <div id="statsGrid" class="stats-grid"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '/api';
+        let editingStudentId = null;
+
+        // Показване/скриване на табове
+        function showTab(tabName) {
+            // Скриване на всички табове
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Показване на избрания таб
+            document.getElementById(`${tabName}-tab`).classList.add('active');
+            event.target.classList.add('active');
+
+            // Зареждане на данни според таба
+            if (tabName === 'students') {
+                loadStudents();
+            } else if (tabName === 'stats') {
+                loadStats();
+            }
+        }
+
+        // Показване на съобщения
+        function showMessage(text, type = 'success') {
+            const messageEl = document.getElementById('message');
+            messageEl.textContent = text;
+            messageEl.className = `message ${type}`;
+            messageEl.style.display = 'block';
+            
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 5000);
+        }
+
+        // Зареждане на студенти
+        async function loadStudents() {
+            try {
+                const response = await fetch(`${API_BASE}/students`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayStudents(result.data);
+                    console.log('Заредени студенти:', result.data);
+                } else {
+                    showMessage('Грешка при зареждане на студентите', 'error');
+                }
+            } catch (error) {
+                console.error('Грешка:', error);
+                showMessage('Грешка при връзка със сървъра', 'error');
+            }
+        }
+
+        // Показване на студенти
+        function displayStudents(students) {
+            const grid = document.getElementById('studentsGrid');
+            
+            if (students.length === 0) {
+                grid.innerHTML = '<p>Няма намерени студенти.</p>';
+                return;
+            }
+
+            grid.innerHTML = students.map(student => `
+                <div class="student-card">
+                    <div class="student-name">${student.firstName} ${student.lastName}</div>
+                    <div class="student-info">📧 ${student.email}</div>
+                    <div class="student-info">🎯 ${student.course} - ${student.year} курс</div>
+                    <div class="student-info">👤 ${student.age} години</div>
+                    <div class="student-info">📊 Успех: ${student.gpa}</div>
+                    <div class="student-actions">
+                        <button onclick="editStudent(${student.id})">Редактирай</button>
+                        <button class="danger" onclick="deleteStudent(${student.id})">Изтрий</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Търсене на студенти
+        async function searchStudents() {
+            const query = document.getElementById('searchInput').value.trim();
+            
+            if (query.length < 2) {
+                loadStudents();
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/students/search/${encodeURIComponent(query)}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayStudents(result.data);
+                }
+            } catch (error) {
+                console.error('Грешка при търсене:', error);
+            }
+        }
+
+        // Добавяне/редактиране на студент
+        document.getElementById('studentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                age: parseInt(document.getElementById('age').value) || 18,
+                course: document.getElementById('course').value,
+                year: parseInt(document.getElementById('year').value) || 1,
+                gpa: parseFloat(document.getElementById('gpa').value) || 0
+            };
+
+            try {
+                const url = editingStudentId 
+                    ? `${API_BASE}/students/${editingStudentId}`
+                    : `${API_BASE}/students`;
+                
+                const method = editingStudentId ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage(result.message);
+                    resetForm();
+                    loadStudents();
+                    console.log('Операция успешна:', result.data);
+                } else {
+                    showMessage(result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Грешка:', error);
+                showMessage('Грешка при връзка със сървъра', 'error');
+            }
+        });
+
+        // Редактиране на студент
+        async function editStudent(id) {
+            try {
+                const response = await fetch(`${API_BASE}/students/${id}`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    const student = result.data;
+                    
+                    // Попълваме формата с данните
+                    document.getElementById('firstName').value = student.firstName;
+                    document.getElementById('lastName').value = student.lastName;
+                    document.getElementById('email').value = student.email;
+                    document.getElementById('age').value = student.age;
+                    document.getElementById('course').value = student.course;
+                    document.getElementById('year').value = student.year;
+                    document.getElementById('gpa').value = student.gpa;
+                    
+                    editingStudentId = id;
+                    showTab('add');
+                    showMessage(`Редактиране на ${student.firstName} ${student.lastName}`, 'success');
+                }
+            } catch (error) {
+                console.error('Грешка:', error);
+                showMessage('Грешка при зареждане на данните', 'error');
+            }
+        }
+
+        // Изтриване на студент
+        async function deleteStudent(id) {
+            if (!confirm('Сигурни ли сте, че искате да изтриете този студент?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/students/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage(result.message);
+                    loadStudents();
+                    console.log('Изтрит студент:', result.data);
+                } else {
+                    showMessage(result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Грешка:', error);
+                showMessage('Грешка при изтриване', 'error');
+            }
+        }
+
+        // Изчистване на формата
+        function resetForm() {
+            document.getElementById('studentForm').reset();
+            editingStudentId = null;
+        }
+
+        // Зареждане на статистики
+        async function loadStats() {
+            try {
+                const response = await fetch(`${API_BASE}/stats`);
+                const result = await response.json();
+                
+                if (result.success) {
+                    displayStats(result.data);
+                    console.log('Статистики:', result.data);
+                }
+            } catch (error) {
+                console.error('Грешка:', error);
+                showMessage('Грешка при зареждане на статистиките', 'error');
+            }
+        }
+
+        // Показване на статистики
+        function displayStats(stats) {
+            const grid = document.getElementById('statsGrid');
+            
+            grid.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${stats.totalStudents}</div>
+                    <div class="stat-label">Общо студенти</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.averageAge}</div>
+                    <div class="stat-label">Средна възраст</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.averageGPA}</div>
+                    <div class="stat-label">Среден успех</div>
+                </div>
+            `;
+
+            // Добавяме разпределение по курсове
+            const courseStats = Object.entries(stats.courseDistribution)
+                .map(([course, count]) => `
+                    <div class="stat-card">
+                        <div class="stat-number">${count}</div>
+                        <div class="stat-label">${course}</div>
+                    </div>
+                `).join('');
+            
+            grid.innerHTML += courseStats;
+        }
+
+        // Първоначално зареждане
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStudents();
+            console.log('Students Management System заредена');
+        });
+    </script>
+</body>
+</html>
