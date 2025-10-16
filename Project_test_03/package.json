@@ -4,9 +4,15 @@
   "description": "",
   "main": "node.js",
   "scripts": {
+    "start": "node node.js",
+    "dev": "nodemon node.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
 }

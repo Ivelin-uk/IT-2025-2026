@@ -13,7 +13,9 @@
     <br>
 
     <input type="text" disabled>
-
+    <div>
+        <button onclick="show()">Повече</button>
+    </div>
     <br>
     <button onclick="calc(0)">0</button>
     <button onclick="calc(1)">1</button>
@@ -33,6 +35,13 @@
     <button onclick="calc('*')">*</button>
     <button onclick="calc('/')">/</button>
     <br>
+
+    <div id="more" style="display: none;">
+        <button onclick="calc('-')">cos</button>
+        <button onclick="calc('+')">sin</button>
+        <button onclick="calc('*')">^</button>
+    </div>
+
     <button onclick="calculate()">calculate</button>
     <button onclick="clearInput()">clear</button>
     <button onclick="ce()">ce</button>
@@ -47,6 +56,10 @@
         document.body.style.backgroundColor = localStorage.getItem('color') || '#fff';
     });
     
+    function show(){
+        document.getElementById('more').style.display  = 'block'; 
+    }
+
     function ce() {
         let input = document.body.children[5];
         input.value = input.value.slice(0, -1);
