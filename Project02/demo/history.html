@@ -6,27 +6,36 @@
     <title>Document</title>
 </head>
 <body>
-    <div>
-        <h1>History</h1>
+    <div class="conteiner">
+        <h1 id="title">History</h1>
     </div>
 </body>
 </html>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    // 1
+    // let collection1 = document.getElementsByTagName('h1');
+    // collection1[0].style.color = 'red';
 
-        let history = JSON.parse(localStorage.getItem('array')) || [];
-       
+    // // 2
+    // let collection2 = document.getElementsByClassName('conteiner');
+    // console.log(collection2);
+
+    // // 3
+    // let h1 = document.getElementById('title')
+    // h1.style.color = 'red';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        let history = JSON.parse(localStorage.getItem('array')) || []; 
         history.forEach(item => {
             let p = document.createElement('p');
             p.textContent = item;
             document.body.children[0].appendChild(p);
         });
-
     });
 
     let array = ['20-2','55-5','10*3','100/4','30+6'];
     array.push('15-3');
     localStorage.setItem('array', JSON.stringify(array));
-    //console.log(array);
+    console.log(array);
 </script>
