@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HTTP GET Request Example</h1>
+    <button id="jokeButton">Get Joke</button>
+    <p id="message"></p>
+    <p id="response"></p>
+
+    <script>
+        let button = document.getElementById('jokeButton');
+        let response = document.getElementById('response');
+        let message = document.getElementById('message');
+
+        button.addEventListener('click', () => {
+            response.textContent = 'Loading...';
+
+            fetch('https://api.chucknorris.io/jokes/random',{ method: 'GET' })
+                .then(res => {
+                    if(!res.ok) {
+                        throw new Error("HTTP error: " + res.status);
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    response.textContent = data.value;
+                    message.textContent = 'Here is your joke:';
+
+                    setTimeout(() => {
+                        message.textContent = '';
+                    }, 3000);
+                })
+                .catch(error => {
+                    message.textContent = 'An error occurred while fetching the joke.';
+                    console.error('Error fetching joke:', error);
+                });
+        });
+       
+    </script>
+</body>
+</html>

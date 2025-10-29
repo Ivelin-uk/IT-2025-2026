@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HTTP GET Request Example</h1>
+    <button id="jokeButton">Get Joke</button>
+    <p id="message"></p>
+    <p id="jokeDisplay"></p>
+    <script>
+
+        let button = document.getElementById('jokeButton');
+        let jokeDisplay = document.getElementById('jokeDisplay');
+        let message = document.getElementById('message');
+
+        button.addEventListener('click', function() {
+
+            jokeDisplay.textContent = 'Loading...';
+
+            fetch('https://api.chucknorris.io/jokes/random')
+                .then(response => response.json())
+                .then(data => {
+                    jokeDisplay.textContent = data.value;
+                    message.textContent = "Шегата е заредена успешно!";
+                    setTimeout(() => {
+                        message.textContent = '';
+                    }, 5000);
+            });
+        });
+
+    </script>
+</body>
+</html>
