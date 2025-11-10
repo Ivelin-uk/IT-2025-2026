@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="getData()">Get Joke</button>
+    <div id="spinner" class="spinner hidden"></div>
+    <p id="message"></p>
+    <p id="result"></p>
+
+    <script>
+        setTimeout(function(){
+            document.body.style.backgroundColor = '#ffffe2';
+        },3000)
+
+
+        function getData(){
+            let p = document.getElementById('result');
+            let m = document.getElementById('message');
+
+            spinner.classList.remove('hidden');
+
+            p.textContent = 'Loading...'
+
+            fetch('http://localhost/test02/api.php', {method: 'GET'})
+            .then(response => response.json())
+            .then(data => {
+                spinner.classList.add('hidden');
+                p.textContent = data.value;
+                m.textContent = 'Шегата е заредена успешно!';
+
+                setTimeout(function(){
+                   m.textContent = '';
+                },3000)
+            })
+        }
+    </script>
+</body>
+</html>
